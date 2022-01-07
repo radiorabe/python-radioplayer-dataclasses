@@ -1,8 +1,12 @@
 # Python Radioplayer Dataclasses
 
-Classes for generating [radioplayer](https://radioplayer.co.uk) compatible data.
+Classes for generating [radioplayer](https://radioplayer.co.uk) compatible data. Generated using [xsdata](https://xsdata.readthedocs.io/).
 
-Generated using [xsdata](https://xsdata.readthedocs.io/).
+## Installation
+
+```bash
+pip install radioplayer-dataclasses
+```
 
 ## Usage
 

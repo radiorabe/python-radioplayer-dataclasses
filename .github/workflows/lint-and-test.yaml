@@ -33,4 +33,4 @@ jobs:
 
       - run: pip install -r requirements-dev.txt
 
-      - run: pytest --cov-fail-under=100
+      - run: python -mpytest --cov-fail-under=100
