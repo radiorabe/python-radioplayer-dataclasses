@@ -6,19 +6,19 @@ repos:
         language: system
         entry: black
         types: [python]
-        exclude: ^radioplayer/dataclasses.py$
+        exclude: ^radioplayer/(__init__|dataclasses).py$
       - id: isort
         name: isort
         language: system
         entry: isort
         types: [python]
-        exclude: ^radioplayer/dataclasses.py$
+        exclude: ^radioplayer/(__init__|dataclasses).py$
       - id: flake8
         name: flake8
         language: system
         entry: flake8
         types: [python]
-        exclude: ^radioplayer/dataclasses.py$
+        exclude: ^radioplayer/(__init__|dataclasses).py$
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.4.0
     hooks:

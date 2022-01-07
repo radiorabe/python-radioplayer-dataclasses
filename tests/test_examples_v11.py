@@ -1,5 +1,6 @@
 import pytest
 from lxml.etree import parse, tostring
+from xmldiff import main as xmldiff
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
@@ -29,7 +30,6 @@ from radioplayer.dataclasses import (
     ShortNameType,
     SocialIdentifierType,
 )
-from xmldiff import main as xmldiff
 
 _FILE_OD_XML = "Radioplayer_Metadata_Examples_for_v11/20120101_1_OD.xml"
 _FILE_PE_XML = "Radioplayer_Metadata_Examples_for_v11/20120101_1_PE.xml"
