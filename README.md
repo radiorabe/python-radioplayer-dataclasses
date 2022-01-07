@@ -27,7 +27,8 @@ Epg(programme_groups=[], schedule=[], alternate_source=[], lang='en', system=<Sy
 ...     xml_declaration=False,
 ... )
 >>> serializer = XmlSerializer(config=config)
->>> xml = serializer.render(epg, ns_map={None: "http://www.radioplayer.co.uk/schemas/11/epgSchedule"})
+>>> rootns = "http://www.radioplayer.co.uk/schemas/11/epgSchedule"
+>>> xml = serializer.render(epg, ns_map={None: rootns})
 >>> print(xml.strip())
 <epg xmlns="http://www.radioplayer.co.uk/schemas/11/epgSchedule" xml:lang="en" system="DAB"/>
 
@@ -100,3 +101,13 @@ it during the squash and merge operation on the PR.
 Once a commit has landed on the `main` branch a release will be created and automatically published to [pypi](https://pypi.org/)
 using the GitHub Action in [.github/workflows/pypi.yaml](./.github/workflows/pypi.yaml) which uses [twine](https://twine.readthedocs.io/)
 to publish the package to pypi.
+
+## License
+
+This application is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3 of the License.
+
+## Copyright
+
+Copyright (c) 2022 [Radio Bern RaBe](http://www.rabe.ch)
