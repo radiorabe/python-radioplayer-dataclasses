@@ -5,3 +5,4 @@ build/
 dist/
 *.egg-info/
 .pytest_cache/
+radioplayer/__init__.py

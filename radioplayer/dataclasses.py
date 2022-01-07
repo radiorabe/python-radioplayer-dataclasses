@@ -200,7 +200,7 @@ class FrequencyTypeType(Enum):
     ALTERNATIVE = "alternative"
 
 
-class ServiceIdtypeType(Enum):
+class ServiceIdTypeAttr(Enum):
     PRIMARY = "primary"
     SECONDARY = "secondary"
 
@@ -309,7 +309,7 @@ class ServiceGroupIdHead(Enum):
 
 
 @dataclass(slots=True, kw_only=True)
-class ServiceIdRpDataType:
+class RadioplayerIdType:
     class Meta:
         name = "serviceIdType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
@@ -499,7 +499,7 @@ class FrequencyType:
 
 
 @dataclass(slots=True, kw_only=True)
-class ServiceIdEpgSiType:
+class ServiceIdType:
     class Meta:
         name = "serviceIDType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
@@ -512,8 +512,8 @@ class ServiceIdEpgSiType:
             "pattern": r"(([0-9a-fA-F]{2}\.[0-9a-fA-F]{4}\.)?[0-9a-fA-F]{4,8}\.[0-9a-fA-F]{1}(\.[0-9a-fA-F]{2})?)|([0-9a-fA-F]{6})",
         }
     )
-    type: ServiceIdtypeType = field(
-        default=ServiceIdtypeType.PRIMARY,
+    type: ServiceIdTypeAttr = field(
+        default=ServiceIdTypeAttr.PRIMARY,
         metadata={
             "type": "Attribute",
         }
@@ -1509,7 +1509,7 @@ class ServiceType:
         name = "serviceType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
 
-    service_id: List[ServiceIdEpgSiType] = field(
+    service_id: List[ServiceIdType] = field(
         default_factory=list,
         metadata={
             "name": "serviceID",
@@ -1596,7 +1596,7 @@ class ServiceType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSI",
         }
     )
-    radioplayer_id: ServiceIdRpDataType = field(
+    radioplayer_id: RadioplayerIdType = field(
         metadata={
             "name": "radioplayerId",
             "type": "Element",
