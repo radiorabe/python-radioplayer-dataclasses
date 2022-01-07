@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.radioplayer.co.uk/schemas/11/epgSchedule" targetNamespace="http://www.radioplayer.co.uk/schemas/11/epgSchedule" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:import namespace="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" schemaLocation="epgDataTypes_11.xsd"/>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type programmeGroupTypeType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="programmeGroupTypeType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="series"/>
+			<xs:enumeration value="show"/>
+			<xs:enumeration value="programConcept"/>
+			<xs:enumeration value="magazine"/>
+			<xs:enumeration value="programCompilation"/>
+			<xs:enumeration value="otherCollection"/>
+			<xs:enumeration value="otherChoice"/>
+			<xs:enumeration value="topic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type programmeGroupType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="programmeGroupType">
+		<xs:sequence>
+			<xs:group ref="epg:scheduleNameGroup" maxOccurs="unbounded"/>
+			<xs:element name="mediaDescription" type="epg:mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="genre" type="epg:genreType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="keywords" type="epg:keywordsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="memberOf" type="epg:memberOfType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="link" type="epg:linkType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="shortId" type="epg:shortCRIDType" use="required"/>
+		<xs:attribute name="id" type="epg:CRIDType" use="optional"/>
+		<xs:attribute name="version" type="xs:integer"/>
+		<xs:attribute name="type" type="programmeGroupTypeType"/>
+		<xs:attribute name="numOfItems" type="xs:positiveInteger"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type programmeGroupsType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="programmeGroupsType">
+		<xs:sequence>
+			<xs:element name="programmeGroup" type="programmeGroupType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:integer"/>
+		<xs:attribute name="creationTime" type="epg:timePointType"/>
+		<xs:attribute name="originator" type="epg:originatorType"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type scheduleType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="scheduleType">
+		<xs:sequence>
+			<xs:element name="scope" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="serviceScope" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="id" type="epg:contentIDType" use="optional"/>
+								<xs:attribute name="radioplayerId" type="xs:nonNegativeInteger" use="required"/>								
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="startTime" type="epg:timePointType" use="required"/>
+					<xs:attribute name="stopTime" type="epg:timePointType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="programme" type="epg:programmeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:integer"/>
+		<xs:attribute name="creationTime" type="epg:timePointType"/>
+		<xs:attribute name="originator" type="epg:originatorType"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type alternateSourceType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="alternateSourceType">
+		<xs:attribute name="protocol" default="URL">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="DAB"/>
+					<xs:enumeration value="DRM"/>
+					<xs:enumeration value="URL"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="type" default="identical">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="more"/>
+					<xs:enumeration value="less"/>
+					<xs:enumeration value="similar"/>
+					<xs:enumeration value="identical"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="url" type="epg:urlType" use="required"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of element epg -->
+	<!-- ##################################################################### -->
+	<xs:element name="epg">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="programmeGroups" type="programmeGroupsType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="schedule" type="scheduleType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="alternateSource" type="alternateSourceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute ref="xml:lang" use="required"/>
+			<xs:attribute name="system" type="epg:systemType" default="DAB"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

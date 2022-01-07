@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceInformation xmlns="http://www.radioplayer.co.uk/schemas/11/epgSI" xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns:radioplayer="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" system="DAB" xml:lang="en" xsi:schemaLocation="http://www.radioplayer.co.uk/schemas/11/epgSI http://www.radioplayer.co.uk/schemas/11/epgSI_11.xsd">
+  <ensemble id="00.0000">
+    <epg:shortName/>
+    <epg:mediumName/>
+    <service format="audio">
+      <serviceID id="e1.0000.0000.0"/>
+      <epg:shortName>Short</epg:shortName>
+      <epg:mediumName>Medium Name</epg:mediumName>
+      <epg:longName>Long Name</epg:longName>
+      <mediaDescription>
+        <epg:shortDescription>Short description</epg:shortDescription>
+        <epg:longDescription>Long description</epg:longDescription>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://mysite.com/web-search.png" width="86" height="48" index="1"/>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://mysite.com/web-search2.png" width="86" height="48" index="2"/>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://mysite.com/mobile-small.png" width="160" height="90" index="1"/>
+      </mediaDescription>
+      <mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://mysite.com/mobile-large.png" width="288" height="162" index="1"/>
+      </mediaDescription>
+      <genre href="urn:tva:metadata:cs:ContentCS:2002:3.7.1" type="main">
+        <epg:name>Content games categories</epg:name>
+      </genre>
+      <epgLanguage xml:lang="en"/>
+      <link url="http://mysite/mobile" mimeValue="text/html" type="rp-handheld-station-view" index="0"/>
+      <radioplayerId id="1"/>
+      <listenliveGroup>
+        <radioplayer:listenlive>
+          <radioplayer:player>http://mysite.com/player</radioplayer:player>
+          <radioplayer:audioStreamGroup>
+            <radioplayer:audioStream>
+              <radioplayer:audioSource mimeValue="audio/mp3" url="http://mystreamer.com/low.mp3"/>
+              <radioplayer:audioFormat href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+              <radioplayer:bitRate target="48000" variable="false"/>
+              <radioplayer:restriction relationship="allow">UK</radioplayer:restriction>
+            </radioplayer:audioStream>
+            <radioplayer:audioStream>
+              <radioplayer:audioSource mimeValue="audio/mp3" url="http://mystreamer.com/high.mp3"/>
+              <radioplayer:audioFormat href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+              <radioplayer:bitRate target="128000" variable="false"/>
+              <radioplayer:restriction relationship="allow">UK</radioplayer:restriction>
+            </radioplayer:audioStream>
+            <radioplayer:audioStream>
+              <radioplayer:rtmpSource server="rtmp://rtmp.mystreamer.com/" endpoint="live"/>
+              <radioplayer:audioFormat href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+              <radioplayer:bitRate target="128000" variable="false"/>
+              <radioplayer:restriction relationship="allow">UK</radioplayer:restriction>
+            </radioplayer:audioStream>
+          </radioplayer:audioStreamGroup>
+        </radioplayer:listenlive>
+      </listenliveGroup>
+      <geoLocations>York</geoLocations>
+      <geoFootprint>53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181</geoFootprint>
+      <socialId type="googleplus" uid="123645"/>
+      <socialId type="twitter" uid="123645"/>
+      <socialId type="facebook" uid="mystation"/>
+    </service>
+  </ensemble>
+</serviceInformation>

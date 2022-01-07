@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:radioplayer="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" xmlns="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" targetNamespace="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:import namespace="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" schemaLocation="rpDataTypes_11.xsd"/>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of CAType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="CAType">
+		<xs:attribute name="type" default="none">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="unspecified"/>
+					<xs:enumeration value="none"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of keywordsType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="keywordsType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of mediaDescriptionType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="mediaDescriptionType">
+		<xs:choice>
+			<xs:group ref="descriptionGroup"/>
+			<xs:element name="multimedia">
+				<xs:complexType>
+					<xs:attribute name="mimeValue" type="mimeType" use="optional"/>
+					<xs:attribute ref="xml:lang" default="en"/>
+					<xs:attribute name="url" type="urlType"/>
+					<xs:attribute name="type" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="logo_unrestricted"/>
+								<xs:enumeration value="logo_mono_square"/>
+								<xs:enumeration value="logo_colour_square"/>
+								<xs:enumeration value="logo_mono_rectangle"/>
+								<xs:enumeration value="logo_colour_rectangle"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="width" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="height" type="xs:nonNegativeInteger"/>
+					<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of locationType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="locationType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="time" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="time" type="timePointType" use="required"/>
+						<xs:attribute name="duration" type="durationType" use="required"/>
+						<xs:attribute name="actualTime" type="timePointType"/>
+						<xs:attribute name="actualDuration" type="durationType"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="relativeTime" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="time" type="durationType" use="required"/>
+						<xs:attribute name="duration" type="durationType" use="required"/>
+						<xs:attribute name="actualTime" type="durationType"/>
+						<xs:attribute name="actualDuration" type="durationType"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="bearer" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="id" type="contentIDType" use="optional"/>
+					<xs:attribute name="radioplayerId" type="xs:nonNegativeInteger" use="required"/>
+					<xs:attribute name="trigger" type="triggerType"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of memberOfType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="memberOfType">
+		<xs:attribute name="shortId" type="shortCRIDType" use="required"/>
+		<xs:attribute name="id" type="CRIDType" use="optional"/>
+		<xs:attribute name="index" type="xs:positiveInteger" use="optional"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of element epgLanguageType-->
+	<!-- ##################################################################### -->
+	<xs:complexType name="epgLanguageType">
+		<xs:attribute ref="xml:lang" default="en"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of linkType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="linkType">
+		<xs:attribute name="url" type="urlType" use="required"/>
+		<xs:attribute name="mimeValue" type="mimeType"/>
+		<xs:attribute ref="xml:lang" default="en"/>
+		<xs:attribute name="description">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="180"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="expiryTime" type="timePointType"/>
+		<!-- Metadata ver 1.1 amendment-->
+		<xs:attribute name="type" type="xs:string"/>
+		<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of programmeType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="programmeType">
+		<xs:sequence>
+			<xs:group ref="scheduleNameGroup" maxOccurs="unbounded"/>
+			<!-- Optional location element to support on-demand content which does not have a corresponding
+			     broadcast time -->
+			<xs:element name="location" type="locationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mediaDescription" type="mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="genre" type="genreType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CA" type="CAType" minOccurs="0"/>
+			<xs:element name="keywords" type="keywordsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="memberOf" type="memberOfType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="link" type="linkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="programmeEvent" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="scheduleNameGroup" maxOccurs="unbounded"/>
+						<xs:element name="location" type="locationType" maxOccurs="unbounded"/>
+						<xs:element name="mediaDescription" type="mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="genre" type="genreType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="CA" type="CAType" minOccurs="0"/>
+						<xs:element name="keywords" type="keywordsType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="memberOf" type="memberOfType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="link" type="linkType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="mbid" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="isrc" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="catalogue" type="xs:string" minOccurs="0" maxOccurs="1"/>
+						<xs:element name="barcode" type="xs:string" minOccurs="0" maxOccurs="1"/>						
+						<xs:element name="mediaCredit" type="radioplayer:mediaCreditType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="shortId" type="shortCRIDType" use="required"/>
+					<xs:attribute name="id" type="CRIDType" use="optional"/>
+					<xs:attribute name="version" type="xs:integer"/>
+					<xs:attribute name="recommendation" type="recommendationType" default="no"/>
+					<xs:attribute name="broadcast" type="broadcastType" default="on-air"/>
+					<xs:attribute ref="xml:lang" use="optional" default="en"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ondemand" type="radioplayer:ondemandType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="socialId" type="radioplayer:socialIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="shortId" type="shortCRIDType" use="required"/>
+		<xs:attribute name="id" type="CRIDType" use="optional"/>
+		<xs:attribute name="version" type="xs:integer"/>
+		<xs:attribute name="recommendation" type="recommendationType" default="no"/>
+		<xs:attribute name="broadcast" type="broadcastType" default="on-air"/>
+		<xs:attribute name="bitrate" type="xs:nonNegativeInteger"/>
+		<xs:attribute ref="xml:lang" use="optional" default="en"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of messageType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="messageType" abstract="true">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="xml:lang" use="optional" default="en"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of shortNameType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="shortNameType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType">
+				<xs:maxLength value="8"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of mediumNameType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="mediumNameType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType">
+				<xs:maxLength value="16"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of longNameType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="longNameType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType">
+				<xs:maxLength value="128"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of shortDescriptionType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="shortDescriptionType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType">
+				<xs:maxLength value="180"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of longDescriptionType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="longDescriptionType">
+		<xs:simpleContent>
+			<xs:restriction base="messageType">
+				<xs:maxLength value="1200"/>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of originatorType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="originatorType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of serviceProviderType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="serviceProviderType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of genreType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="genreType">
+		<xs:sequence>
+			<xs:element name="name" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="messageType">
+							<xs:attribute name="preferred" type="xs:boolean" use="optional"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="definition" type="messageType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="href" type="termReferenceType" use="required"/>
+		<xs:attribute name="type" use="optional" default="main">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="main"/>
+					<xs:enumeration value="secondary"/>
+					<xs:enumeration value="other"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of termReferenceType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="termReferenceType">
+		<xs:union>
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:whiteSpace value="collapse"/>
+					<xs:pattern value=":[^:]+:[^:]+"/>
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:simpleType>
+				<xs:restriction base="xs:anyURI"/>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ########################################## -->
+	<!-- Definition of CRIDType -->
+	<!-- ########################################## -->
+	<xs:simpleType name="CRIDType">
+		<xs:restriction base="xs:anyURI">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="(c|C)(r|R)(i|I)(d|D)://.*/.*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ########################################## -->
+	<!-- Definition of shortCRIDType -->
+	<!-- ########################################## -->
+	<xs:simpleType name="shortCRIDType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="16777215"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ########################################## -->
+	<!--  Definition of timePointType  -->
+	<!-- ########################################## -->
+	<!-- restrictions: no leading minus sign, no fractional seconds -->
+	<xs:simpleType name="timePointType">
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="[^\-].+T[^\.]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ######################################### -->
+	<!--  Definition of durationType  -->
+	<!-- ######################################### -->
+	<!-- restrictions: no leading minus sign, no year/month/day, no fractional seconds -->
+	<!-- Note: maximum of 18 hours is not enforced -->
+	<xs:simpleType name="durationType">
+		<xs:restriction base="xs:duration">
+			<xs:pattern value="PT[^\.]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of contentIDType-->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="contentIDType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="(([0-9a-fA-F]{2}\.[0-9a-fA-F]{4}\.)?[0-9a-fA-F]{4,8}\.[0-9a-fA-F]{1}(\.[0-9a-fA-F]{2})?)|([0-9a-fA-F]{6})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of urlType-->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="urlType">
+		<xs:restriction base="xs:anyURI">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="((crid|CRID|tel|mailto|postal|http|https|dab|drm):(//|\+|SMS=)?)?([a-zA-Z0-9]|\.|@|%|\-|/|_|\+|\?|=|;){1,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of broadcastType-->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="broadcastType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="on-air"/>
+			<xs:enumeration value="off-air"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of recommendationType-->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="recommendationType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="yes"/>
+			<xs:enumeration value="no"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of systemType-->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="systemType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="DAB"/>
+			<xs:enumeration value="DRM"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of simulcastType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="simulcastType">
+		<xs:attribute name="system" type="systemType" use="required"/>
+		<xs:attribute name="id" type="contentIDType"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of mimeType (Multipurpose Internet Mail Extension -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="mimeType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="([!-\.0-~]{1,}/[!-\.0-~]{1,})+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of triggerType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="triggerType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="[0-9a-fA-F]{8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of ensembleIDType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="ensembleIDType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="([0-9a-fA-F]{2}\.[0-9a-fA-F]{4})|([0-9a-fA-F]{6})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of scheduleNameGroup -->
+	<!-- ##################################################################### -->
+	<xs:group name="scheduleNameGroup">
+		<xs:sequence>
+			<xs:element name="shortName" type="shortNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mediumName" type="mediumNameType" maxOccurs="unbounded"/>
+			<xs:element name="longName" type="longNameType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of serviceNameGroup -->
+	<!-- ##################################################################### -->
+	<xs:group name="serviceNameGroup">
+		<xs:sequence>
+			<xs:element name="shortName" type="shortNameType" maxOccurs="unbounded"/>
+			<xs:element name="mediumName" type="mediumNameType" maxOccurs="unbounded"/>
+			<xs:element name="longName" type="longNameType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Definition of descriptionGroup -->
+	<!-- ##################################################################### -->
+	<xs:group name="descriptionGroup">
+		<xs:sequence>
+			<xs:element name="shortDescription" type="shortDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="longDescription" type="longDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:group>
+	<!-- -->
+</xs:schema>

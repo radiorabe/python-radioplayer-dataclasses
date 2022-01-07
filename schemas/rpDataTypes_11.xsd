@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" targetNamespace="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:import namespace="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" schemaLocation="epgDataTypes_11.xsd"/>
+	<!-- ##################################################################### -->
+	<!-- Definition of serviceIdType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="serviceIdType">
+		<xs:attribute name="id" type="xs:nonNegativeInteger" use="required"/>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of audioStreamGroupType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="audioStreamGroupType">
+		<xs:sequence>
+			<xs:element name="audioStream" type="audioStreamType" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of audioStreamType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="audioStreamType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="audioSource" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:attribute name="mimeValue" type="epg:mimeType"
+							use="required" />
+						<xs:attribute name="url" type="xs:anyURI" use="required" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="rtmpSource" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:attribute name="server" type="xs:string" use="required" />
+						<xs:attribute name="endpoint" type="xs:string" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="audioFormat" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="href" type="xs:string" use="required" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="bitRate" type="bitRateType" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="restriction" type="restrictionType"
+				minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of bitRateType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="bitRateType">
+		<xs:attribute name="target" type="xs:nonNegativeInteger"
+			use="required" />
+		<xs:attribute name="variable" type="xs:boolean" default="false"
+			use="optional" />
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of restrictionType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="restrictionType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="relationship" use="required">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="allow" />
+							<xs:enumeration value="deny" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of listenliveGroupType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="listenliveGroupType">
+		<xs:sequence>
+			<xs:element name="listenlive" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="player" minOccurs="1" maxOccurs="1">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string"/>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="restriction" minOccurs="0" maxOccurs="1">
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="relationship" use="required">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="allow"/>
+													<xs:enumeration value="deny"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="audioStreamGroup" type="audioStreamGroupType" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+					<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of geoLocationsType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="geoLocationsType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of geoFootprintType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="geoFootprintType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string"/>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of serviceGroupType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="serviceGroupType">
+		<xs:sequence>
+			<xs:element name="serviceGroupId" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:attribute name="radioplayerId" type="xs:nonNegativeInteger" use="required"/>
+					<xs:attribute name="index" type="xs:nonNegativeInteger" use="optional"/>
+					<xs:attribute name="head" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="yes"/>
+								<xs:enumeration value="no"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:group ref="epg:serviceNameGroup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mediaDescription" type="epg:mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>			
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ##################################################################### -->
+	<!-- Definition of ondemandType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="ondemandType">
+		<xs:sequence>
+			<xs:element name="player" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="restriction" minOccurs="0" maxOccurs="1">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="relationship" use="required">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="allow"/>
+										<xs:enumeration value="deny"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="availability" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<!-- 
+							Should use the scopeType, but since it doesnt exist we're copying what is in the epgSchedule XSD.
+							May be prudent to recommend splitting out a specific type in the DAB-EPG spec for us then to use.
+						 -->
+						<xs:element name="scope" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="serviceScope" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="id" type="epg:contentIDType" use="required"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="startTime" type="epg:timePointType" use="required"/>
+								<xs:attribute name="stopTime" type="epg:timePointType" use="required"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+				</xs:element>
+				<xs:element name="audioStreamGroup" type="audioStreamGroupType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="duration" type="epg:durationType" use="optional"/>
+	</xs:complexType>
+
+	<!-- ##################################################################### -->
+	<!-- Definition of mediaCreditType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="mediaCreditType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="role" type="xs:string" use="required"/>
+				<xs:attribute name="scheme" type="xs:string" use="required"/>
+				<xs:attribute name="mbid" type="xs:string" use="optional"/>
+				<xs:attribute name="dbpid" type="xs:string" use="optional"/>
+				<xs:attribute name="imdb" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+		
+	<!-- ##################################################################### -->
+	<!-- Definition of socialIdentiferType -->
+	<!-- ##################################################################### -->	
+	<xs:complexType name="socialIdentifierType">
+    	<xs:attribute name="type" type="xs:string" use="required"/>
+	    <xs:attribute name="uid" type="xs:string" use="required"/>
+	</xs:complexType>
+	
+</xs:schema>

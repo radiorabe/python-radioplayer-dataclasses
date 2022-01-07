@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<epg xmlns:radioplayer="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns="http://www.radioplayer.co.uk/schemas/11/epgSchedule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" system="DAB" xml:lang="en" xsi:schemaLocation="http://www.radioplayer.co.uk/schemas/11/epgSchedule http://www.radioplayer.co.uk/schemas/11/epgSchedule_11.xsd">
+  <schedule creationTime="2012-01-01T00:00:00+00:00" originator="myoriginator" version="111">
+    <scope startTime="2012-01-01T00:00:00+00:00" stopTime="2012-01-01T00:02:00+00:00">
+      <serviceScope id="e1.0000.0000.0" radioplayerId="1"/>
+    </scope>
+    <programme id="crid://mysite.com/progs/100" shortId="100" recommendation="no" broadcast="on-air" bitrate="111" version="111" xml:lang="en">
+      <epg:mediumName xml:lang="en">Medium Name</epg:mediumName>
+      <epg:longName xml:lang="en">Long Name</epg:longName>
+      <epg:location>
+        <epg:time time="2012-01-01T00:00:00+00:00" duration="PT2H"/>
+        <epg:bearer id="e1.0000.0000.0" radioplayerId="1"/>
+      </epg:location>
+      <epg:genre href="urn:radioplayer:metadata:cs:Category:2012:1" type="main">
+        <epg:name>Pop/Chart</epg:name>
+      </epg:genre>
+      <epg:ondemand>
+        <radioplayer:player>http://mysite.com/player</radioplayer:player>
+        <radioplayer:restriction relationship="allow">UK</radioplayer:restriction>
+        <radioplayer:availability>
+          <radioplayer:scope stopTime="2012-07-01T00:02:00+00:00" startTime="2012-01-01T00:02:00+00:00">
+            <radioplayer:serviceScope id="e1.0000.0000.0"/>
+          </radioplayer:scope>
+        </radioplayer:availability>
+        <radioplayer:audioStreamGroup>
+          <radioplayer:audioStream>
+            <radioplayer:audioSource mimeValue="audio/mp3" url="http://mysite.com/100.mp3"/>
+            <radioplayer:audioFormat href="urn:mpeg:mpeg7:cs:AudioPresentationCS:2001:3"/>
+            <radioplayer:bitRate target="2164000" variable="false"/>
+            <radioplayer:restriction relationship="allow">UK</radioplayer:restriction>
+          </radioplayer:audioStream>
+        </radioplayer:audioStreamGroup>
+      </epg:ondemand>
+      <epg:socialId type="facebook" uid="12345678"/>
+      <epg:socialId type="twitter" uid="12345678"/>
+    </programme>
+  </schedule>
+</epg>

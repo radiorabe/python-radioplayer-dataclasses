@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns:radioplayer="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.radioplayer.co.uk/schemas/11/epgSI" targetNamespace="http://www.radioplayer.co.uk/schemas/11/epgSI" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	<xs:import namespace="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" schemaLocation="epgDataTypes_11.xsd"/>
+	<xs:import namespace="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" schemaLocation="rpDataTypes_11.xsd"/>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type frequencyType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="frequencyType">
+		<xs:attribute name="type" default="primary">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="primary"/>
+					<xs:enumeration value="alternative"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="kHz" type="xs:nonNegativeInteger"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type formatType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="formatType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="audio"/>
+			<xs:enumeration value="data"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type extFormatType -->
+	<!-- ##################################################################### -->
+	<xs:simpleType name="extFormatType">
+		<xs:restriction base="xs:string">
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="(([0-3]{1}\.[0-9a-fA-F]{2}\.[0-9a-fA-F]{3})|([0-7]{1}\.[0-9a-fA-F]{4}))((\.([0-9a-fA-F]{2})+)?)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type serviceIDType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="serviceIDType">
+		<xs:attribute name="id" type="epg:contentIDType" use="required"/>
+		<xs:attribute name="type" default="primary">
+			<xs:simpleType>
+				<xs:restriction base="xs:NMTOKEN">
+					<xs:enumeration value="primary"/>
+					<xs:enumeration value="secondary"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type serviceType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="serviceType">
+		<xs:sequence>
+			<xs:element name="serviceID" type="serviceIDType" maxOccurs="unbounded"/>
+			<xs:element name="simulcast" type="epg:simulcastType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:group ref="epg:serviceNameGroup" maxOccurs="unbounded"/>
+			<xs:element name="mediaDescription" type="epg:mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="genre" type="epg:genreType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="epgLanguage" type="epg:epgLanguageType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CA" type="epg:CAType" minOccurs="0"/>
+			<xs:element name="keywords" type="epg:keywordsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="link" type="epg:linkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="radioplayerId" type="radioplayer:serviceIdType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="listenliveGroup" type="radioplayer:listenliveGroupType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="geoLocations" type="radioplayer:geoLocationsType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="geoFootprint" type="radioplayer:geoFootprintType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="socialId" type="radioplayer:socialIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="version" type="xs:integer"/>
+		<xs:attribute name="format" type="formatType" default="audio"/>
+		<xs:attribute name="bitrate" type="xs:nonNegativeInteger"/>
+		<xs:attribute name="extFormat" type="extFormatType" use="optional"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of type ensembleType -->
+	<!-- ##################################################################### -->
+	<xs:complexType name="ensembleType">
+		<xs:sequence>
+			<xs:group ref="epg:serviceNameGroup" maxOccurs="unbounded"/>
+			<xs:element name="frequency" type="frequencyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="mediaDescription" type="epg:mediaDescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CA" type="epg:CAType" minOccurs="0"/>
+			<xs:element name="keywords" type="epg:keywordsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="link" type="epg:linkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="service" type="serviceType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="epg:ensembleIDType" use="required"/>
+		<xs:attribute name="version" type="xs:integer"/>
+	</xs:complexType>
+	<!-- -->
+	<!-- ##################################################################### -->
+	<!-- Declaration of element serviceInformation -->
+	<!-- ##################################################################### -->
+	<xs:element name="serviceInformation">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">Service information includes the structure of and information about the multiplex and its associated services</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ensemble" type="ensembleType" maxOccurs="unbounded"/>
+				<!-- serviceGroup following ensemble because the contained services may span many ensembles -->
+				<xs:element name="serviceGroup" type="radioplayer:serviceGroupType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:integer"/>
+			<xs:attribute name="creationTime" type="epg:timePointType"/>
+			<xs:attribute name="originator" type="epg:originatorType"/>
+			<xs:attribute name="serviceProvider" type="epg:serviceProviderType"/>
+			<xs:attribute name="system" type="epg:systemType" default="DAB"/>
+			<xs:attribute ref="xml:lang" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

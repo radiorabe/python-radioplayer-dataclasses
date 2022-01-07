@@ -1,0 +1,5 @@
+# we use .gitattributes for linguist for hinting, see:
+# <https://github.com/github/linguist/blob/master/docs/overrides.md>
+
+schemas/*.xsd linguist-vendored
+radioplayer/dataclasses.py linguist-generated

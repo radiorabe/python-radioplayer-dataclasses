@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<epg xmlns:radioplayer="http://www.radioplayer.co.uk/schemas/11/rpDataTypes" xmlns:epg="http://www.radioplayer.co.uk/schemas/11/epgDataTypes" xmlns="http://www.radioplayer.co.uk/schemas/11/epgSchedule" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" system="DAB" xml:lang="en" xsi:schemaLocation="http://www.radioplayer.co.uk/schemas/11/epgSchedule http://www.radioplayer.co.uk/schemas/11/epgSchedule_11.xsd">
+  <schedule creationTime="2012-01-01T00:00:00+00:00" originator="myoriginator" version="111">
+    <scope startTime="2012-01-01T00:00:00+00:00" stopTime="2012-01-01T00:02:00+00:00">
+      <serviceScope id="e1.0000.0000.0" radioplayerId="1"/>
+    </scope>
+    <programme id="crid://mysite.com/progs/100" shortId="100" recommendation="no" broadcast="on-air" bitrate="111" version="111" xml:lang="en">
+      <epg:mediumName xml:lang="en">Medium Name</epg:mediumName>
+      <epg:longName xml:lang="en">Long Name</epg:longName>
+      <epg:location>
+        <epg:time time="2012-01-01T00:00:00+00:00" duration="PT2H"/>
+        <epg:bearer id="e1.0000.0000.0" radioplayerId="1"/>
+      </epg:location>
+      <epg:mediaDescription>
+        <epg:multimedia mimeValue="image/png" xml:lang="en" url="http://mysite.com/web-search.png" width="86" height="48" index="1"/>
+      </epg:mediaDescription>
+      <epg:genre href="urn:radioplayer:metadata:cs:Category:2012:1" type="main">
+        <epg:name>Pop/Chart</epg:name>
+      </epg:genre>
+      <epg:programmeEvent id="crid://mysite.com/nowplaying" shortId="0" recommendation="no" broadcast="on-air">
+        <epg:mediumName xml:lang="en">The Luckiest Guy</epg:mediumName>
+        <epg:longName xml:lang="en">The Luckiest Guy on the Lower East Side</epg:longName>
+        <epg:location>
+          <epg:relativeTime time="PT1H51M23S" duration="PT3M23S"/>
+        </epg:location>
+        <epg:genre href="urn:tva:metadata:cs:ContentCS:2002:3.6.1"/>
+        <epg:mediaCredit role="artist" scheme="urn:ebu">The Magnetic Fields</epg:mediaCredit>
+      </epg:programmeEvent>
+    </programme>
+  </schedule>
+</epg>
