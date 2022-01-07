@@ -16,6 +16,7 @@
     <PackageName case="snakeCase" safePrefix="pkg" />
   </Conventions>
   <Substitutions>
-    <Substitution type="class" search="Class" replace="Type" />
+    <Substitution type="class" search="ServiceIdtype1" replace="ServiceIdEpgSiType" />
+    <Substitution type="class" search="ServiceIdType2" replace="ServiceIdRpDataType" />
   </Substitutions>
 </Config>

@@ -309,7 +309,7 @@ class ServiceGroupIdHead(Enum):
 
 
 @dataclass(slots=True, kw_only=True)
-class ServiceIdType2:
+class ServiceIdRpDataType:
     class Meta:
         name = "serviceIdType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
@@ -499,7 +499,7 @@ class FrequencyType:
 
 
 @dataclass(slots=True, kw_only=True)
-class ServiceIdtype1:
+class ServiceIdEpgSiType:
     class Meta:
         name = "serviceIDType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
@@ -1509,7 +1509,7 @@ class ServiceType:
         name = "serviceType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
 
-    service_id: List[ServiceIdtype1] = field(
+    service_id: List[ServiceIdEpgSiType] = field(
         default_factory=list,
         metadata={
             "name": "serviceID",
@@ -1596,7 +1596,7 @@ class ServiceType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSI",
         }
     )
-    radioplayer_id: ServiceIdType2 = field(
+    radioplayer_id: ServiceIdRpDataType = field(
         metadata={
             "name": "radioplayerId",
             "type": "Element",

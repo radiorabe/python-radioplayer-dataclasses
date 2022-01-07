@@ -56,7 +56,7 @@ curl -L -O https://radioplayer.co.uk/schemas/11/epgSI_11.xsd
 popd
 ```
 
-Some touchups where made to the files to make them validate where neseccary.
+Some touchups where made to the files to make them validate where necessary.
 
 ### Generating dataclasses
 

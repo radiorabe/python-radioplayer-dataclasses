@@ -23,8 +23,8 @@ from radioplayer.dataclasses import (
     ProgrammeType,
     RestrictionType,
     ScheduleType,
-    ServiceIdtype1,
-    ServiceIdType2,
+    ServiceIdEpgSiType,
+    ServiceIdRpDataType,
     ServiceInformation,
     ServiceType,
     ShortNameType,
@@ -299,7 +299,7 @@ def test_example_si(xml_serializer):
             short_name=ShortNameType(lang=None),
             medium_name=MediumNameType(lang=None),
             service=ServiceType(
-                service_id=ServiceIdtype1(id="e1.0000.0000.0", type=None),
+                service_id=ServiceIdEpgSiType(id="e1.0000.0000.0", type=None),
                 short_name="Short",
                 medium_name="Medium Name",
                 long_name="Long Name",
@@ -362,7 +362,7 @@ def test_example_si(xml_serializer):
                     type="rp-handheld-station-view",
                     index="0",
                 ),
-                radioplayer_id=ServiceIdType2(id="1"),
+                radioplayer_id=ServiceIdRpDataType(id="1"),
                 listenlive_group=ListenliveGroupType(
                     listenlive=ListenliveGroupType.Listenlive(
                         player="http://mysite.com/player",
