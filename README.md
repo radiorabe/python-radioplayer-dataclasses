@@ -27,8 +27,7 @@ Epg(programme_groups=[], schedule=[], alternate_source=[], lang='en', system=<Sy
 ...     xml_declaration=False,
 ... )
 >>> serializer = XmlSerializer(config=config)
->>> rootns = "http://www.radioplayer.co.uk/schemas/11/epgSchedule"
->>> xml = serializer.render(epg, ns_map={None: rootns})
+>>> xml = serializer.render(epg, ns_map={None: Epg.Meta.namespace})
 >>> print(xml.strip())
 <epg xmlns="http://www.radioplayer.co.uk/schemas/11/epgSchedule" xml:lang="en" system="DAB"/>
 
