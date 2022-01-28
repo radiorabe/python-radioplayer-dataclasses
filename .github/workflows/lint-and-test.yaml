@@ -8,6 +8,24 @@ on:
       - gh-pages
 
 jobs:
+
+  xsdata-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - run: pip install -r requirements-dev.txt
+
+      - name: Run xsdata
+        run: xsdata -c .xsdata.xml schemas/
+
+      - name: Check Diff
+        run: git diff --exit-code
+
   pre-commit:
     runs-on: ubuntu-latest
     steps:
