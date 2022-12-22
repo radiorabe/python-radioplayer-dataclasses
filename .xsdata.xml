@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Config xmlns="http://pypi.org/project/xsdata" version="21.12">
   <Output maxLineLength="79">
-    <Package>radioplayer.dataclasses</Package>
+    <Package>radioplayer.dataclasses.dataclasses</Package>
     <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="true" kwOnly="true">dataclasses</Format>
     <Structure>single-package</Structure>
     <DocstringStyle>reStructuredText</DocstringStyle>

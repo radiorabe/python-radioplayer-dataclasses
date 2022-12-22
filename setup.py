@@ -1,6 +1,6 @@
 """Set up radioplayer-dataclasses."""
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 with open("requirements.txt", encoding="utf-8") as f:
     requirements = f.read().splitlines()
@@ -13,7 +13,7 @@ setup(
     author="RaBe IT-Reaktion",
     author_email="it@rabe.ch",
     license="AGPL-3",
-    packages=find_packages(exclude=("tests",)),
+    packages=["radioplayer.dataclasses"],
     version_config={"starting_version": "0.1.0"},
     setup_requires=["setuptools-git-versioning"],
     install_requires=requirements,
