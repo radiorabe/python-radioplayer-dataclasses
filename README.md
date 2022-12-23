@@ -40,7 +40,15 @@ Additional examples are available in the `tests/` directory.
 ### Getting Started
 
 ```bash
-pip install -r requirements-dev.txt
+# setup a dev env
+python -mvenv env
+. env/bin/activate
+
+# install a modern poetry version
+python -mpip install 'poetry>=1.2.0'
+
+# install deps and dev version
+poetry install
 ```
 
 ### Loading XSD files
@@ -61,13 +69,13 @@ Some touchups where made to the files to make them validate where necessary.
 ### Generating dataclasses
 
 ```bash
-xsdata -c .xsdata.xml schemas/
+poetry run xsdata -c .xsdata.xml schemas/
 ```
 
 ### Running tests
 
 ```bash
-pytest
+poetry run pytest
 ```
 
 ## Release Management
@@ -98,7 +106,7 @@ If a commit does not contain a conventional commit style message you can fix
 it during the squash and merge operation on the PR.
 
 Once a commit has landed on the `main` branch a release will be created and automatically published to [pypi](https://pypi.org/)
-using the GitHub Action in [.github/workflows/pypi.yaml](./.github/workflows/pypi.yaml) which uses [twine](https://twine.readthedocs.io/)
+using the GitHub Action in [.github/workflows/release.yaml](./.github/workflows/release.yaml) which uses [poetry](https://python-poetry.org/)
 to publish the package to pypi.
 
 ## License

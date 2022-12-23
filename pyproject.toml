@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "radioplayer-dataclasses"
+version = "0.0.0" # 0.0.0 placeholder is replaced on release
+description = "Generate CRIDs for RaBe"
+repository = "https://github.com/radiorabe/python-radioplayer-dataclasses"
+authors = ["RaBe IT-Reaktion <it@rabe.ch>"]
+license = "AGPL-3"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+readme = "README.md"
+packages = [
+    { include = "radioplayer/dataclasses"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+xsdata = "^22.12"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+flake8 = "^6.0.0"
+flake8-docstrings = "^1.6.0"
+flake8-isort = "^5.0.3"
+flake8-string-format = "^0.3.0"
+flake8-tuple = "^0.4.1"
+lxml = "^4.9.2"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+pytest-pylint = "^0.19.0"
+wheel = "^0.38.4"
+xmldiff = "^2.4"
+xsdata = {extras = ["cli"], version = "^22.12"}
+pytest-random-order = "^1.1.0"
+pytest-mypy = "^0.10.3"
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.pylint.format]
+max-line-lenth = 120
+
+[tool.pylint.main]
+extension-pkg-allow-list = ["lxml"]
+ignore-paths = ["radioplayer/dataclasses/dataclasses.py"]
+
+[tool.pylint.messages_control]
+# C0114 = missing-module-docstring
+# C0116 = missing-function-docstring
+disable = ["C0114","C0116"]
+
+[tool.pytest.ini_options]
+minversion = "7.2"
+addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=radioplayer.dataclasses --cov-fail-under=100 --pylint --mypy"
+filterwarnings = [
+    "ignore::pytest.PytestRemovedIn8Warning:pytest_pylint",
+    "ignore::DeprecationWarning:pylint"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

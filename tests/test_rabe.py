@@ -1,5 +1,5 @@
 import pytest
-from xmldiff import main as xmldiff
+from xmldiff import main as xmldiff  # type: ignore
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
