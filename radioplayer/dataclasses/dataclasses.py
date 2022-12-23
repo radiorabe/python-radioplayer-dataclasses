@@ -19,7 +19,7 @@ class GenreTypeType(Enum):
     OTHER = "other"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LocationType:
     class Meta:
         name = "locationType"
@@ -48,7 +48,7 @@ class LocationType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Bearer:
         id: Optional[str] = field(
             default=None,
@@ -58,7 +58,8 @@ class LocationType:
                 "pattern": r"(([0-9a-fA-F]{2}\.[0-9a-fA-F]{4}\.)?[0-9a-fA-F]{4,8}\.[0-9a-fA-F]{1}(\.[0-9a-fA-F]{2})?)|([0-9a-fA-F]{6})",
             }
         )
-        radioplayer_id: int = field(
+        radioplayer_id: Optional[int] = field(
+            default=None,
             metadata={
                 "name": "radioplayerId",
                 "type": "Attribute",
@@ -74,16 +75,18 @@ class LocationType:
             }
         )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Time:
-        time: str = field(
+        time: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"[^\-].+T[^\.]+",
             }
         )
-        duration: str = field(
+        duration: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
@@ -107,16 +110,18 @@ class LocationType:
             }
         )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class RelativeTime:
-        time: str = field(
+        time: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
                 "pattern": r"PT[^\.]+",
             }
         )
-        duration: str = field(
+        duration: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
@@ -141,13 +146,14 @@ class LocationType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class MemberOfType:
     class Meta:
         name = "memberOfType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
-    short_id: int = field(
+    short_id: Optional[int] = field(
+        default=None,
         metadata={
             "name": "shortId",
             "type": "Attribute",
@@ -229,13 +235,14 @@ class ProgrammeGroupTypeType(Enum):
     TOPIC = "topic"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class BitRateType:
     class Meta:
         name = "bitRateType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
 
-    target: int = field(
+    target: Optional[int] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -249,7 +256,7 @@ class BitRateType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class MediaCreditType:
     class Meta:
         name = "mediaCreditType"
@@ -261,13 +268,15 @@ class MediaCreditType:
             "required": True,
         }
     )
-    role: str = field(
+    role: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
         }
     )
-    scheme: str = field(
+    scheme: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -308,13 +317,14 @@ class ServiceGroupIdHead(Enum):
     NO = "no"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class RadioplayerIdType:
     class Meta:
         name = "serviceIdType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
 
-    id: int = field(
+    id: Optional[int] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -322,19 +332,21 @@ class RadioplayerIdType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SocialIdentifierType:
     class Meta:
         name = "socialIdentifierType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
 
-    type: str = field(
+    type: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
         }
     )
-    uid: str = field(
+    uid: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -346,7 +358,7 @@ class LangValue(Enum):
     VALUE = ""
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Catype:
     class Meta:
         name = "CAType"
@@ -360,7 +372,7 @@ class Catype:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class EpgLanguageType:
     class Meta:
         name = "epgLanguageType"
@@ -375,13 +387,14 @@ class EpgLanguageType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LinkType:
     class Meta:
         name = "linkType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
-    url: str = field(
+    url: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -434,7 +447,7 @@ class LinkType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class MessageType:
     class Meta:
         name = "messageType"
@@ -455,13 +468,14 @@ class MessageType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SimulcastType:
     class Meta:
         name = "simulcastType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
-    system: SystemType = field(
+    system: Optional[SystemType] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -477,7 +491,7 @@ class SimulcastType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class FrequencyType:
     class Meta:
         name = "frequencyType"
@@ -498,13 +512,14 @@ class FrequencyType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ServiceIdType:
     class Meta:
         name = "serviceIDType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
 
-    id: str = field(
+    id: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -520,7 +535,7 @@ class ServiceIdType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class AlternateSourceType:
     class Meta:
         name = "alternateSourceType"
@@ -538,7 +553,8 @@ class AlternateSourceType:
             "type": "Attribute",
         }
     )
-    url: str = field(
+    url: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -548,7 +564,7 @@ class AlternateSourceType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class RestrictionType:
     class Meta:
         name = "restrictionType"
@@ -560,7 +576,8 @@ class RestrictionType:
             "required": True,
         }
     )
-    relationship: RestrictionTypeRelationship = field(
+    relationship: Optional[RestrictionTypeRelationship] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -568,7 +585,7 @@ class RestrictionType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class GenreType:
     class Meta:
         name = "genreType"
@@ -588,7 +605,8 @@ class GenreType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgDataTypes",
         }
     )
-    href: str = field(
+    href: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -603,7 +621,7 @@ class GenreType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Name(MessageType):
         preferred: Optional[bool] = field(
             default=None,
@@ -613,49 +631,49 @@ class GenreType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class KeywordsType(MessageType):
     class Meta:
         name = "keywordsType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LongDescriptionType(MessageType):
     class Meta:
         name = "longDescriptionType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LongNameType(MessageType):
     class Meta:
         name = "longNameType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class MediumNameType(MessageType):
     class Meta:
         name = "mediumNameType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ShortDescriptionType(MessageType):
     class Meta:
         name = "shortDescriptionType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ShortNameType(MessageType):
     class Meta:
         name = "shortNameType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class AudioStreamType:
     class Meta:
         name = "audioStreamType"
@@ -677,7 +695,8 @@ class AudioStreamType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
         }
     )
-    audio_format: "AudioStreamType.AudioFormat" = field(
+    audio_format: Optional["AudioStreamType.AudioFormat"] = field(
+        default=None,
         metadata={
             "name": "audioFormat",
             "type": "Element",
@@ -685,7 +704,8 @@ class AudioStreamType:
             "required": True,
         }
     )
-    bit_rate: BitRateType = field(
+    bit_rate: Optional[BitRateType] = field(
+        default=None,
         metadata={
             "name": "bitRate",
             "type": "Element",
@@ -701,18 +721,20 @@ class AudioStreamType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class AudioFormat:
-        href: str = field(
+        href: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
             }
         )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class AudioSource:
-        mime_value: str = field(
+        mime_value: Optional[str] = field(
+            default=None,
             metadata={
                 "name": "mimeValue",
                 "type": "Attribute",
@@ -721,22 +743,25 @@ class AudioStreamType:
                 "pattern": r"([!-\.0-~]{1,}/[!-\.0-~]{1,})+",
             }
         )
-        url: str = field(
+        url: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
             }
         )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class RtmpSource:
-        server: str = field(
+        server: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
             }
         )
-        endpoint: str = field(
+        endpoint: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
@@ -744,7 +769,7 @@ class AudioStreamType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class MediaDescriptionType:
     class Meta:
         name = "mediaDescriptionType"
@@ -774,7 +799,7 @@ class MediaDescriptionType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Multimedia:
         mime_value: Optional[str] = field(
             default=None,
@@ -826,7 +851,7 @@ class MediaDescriptionType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class AudioStreamGroupType:
     class Meta:
         name = "audioStreamGroupType"
@@ -843,7 +868,7 @@ class AudioStreamGroupType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProgrammeGroupType:
     class Meta:
         name = "programmeGroupType"
@@ -911,7 +936,8 @@ class ProgrammeGroupType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSchedule",
         }
     )
-    short_id: int = field(
+    short_id: Optional[int] = field(
+        default=None,
         metadata={
             "name": "shortId",
             "type": "Attribute",
@@ -949,7 +975,7 @@ class ProgrammeGroupType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ListenliveGroupType:
     class Meta:
         name = "listenliveGroupType"
@@ -964,9 +990,10 @@ class ListenliveGroupType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Listenlive:
-        player: str = field(
+        player: Optional[str] = field(
+            default=None,
             metadata={
                 "type": "Element",
                 "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
@@ -995,7 +1022,7 @@ class ListenliveGroupType:
             }
         )
 
-        @dataclass(slots=True, kw_only=True)
+        @dataclass
         class Restriction:
             value: str = field(
                 default="",
@@ -1003,7 +1030,8 @@ class ListenliveGroupType:
                     "required": True,
                 }
             )
-            relationship: RestrictionRelationship = field(
+            relationship: Optional[RestrictionRelationship] = field(
+                default=None,
                 metadata={
                     "type": "Attribute",
                     "required": True,
@@ -1011,13 +1039,14 @@ class ListenliveGroupType:
             )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class OndemandType:
     class Meta:
         name = "ondemandType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
 
-    player: str = field(
+    player: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
@@ -1054,7 +1083,7 @@ class OndemandType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Restriction:
         value: str = field(
             default="",
@@ -1062,14 +1091,15 @@ class OndemandType:
                 "required": True,
             }
         )
-        relationship: RestrictionRelationship = field(
+        relationship: Optional[RestrictionRelationship] = field(
+            default=None,
             metadata={
                 "type": "Attribute",
                 "required": True,
             }
         )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Availability:
         scope: Optional["OndemandType.Availability.Scope"] = field(
             default=None,
@@ -1079,7 +1109,7 @@ class OndemandType:
             }
         )
 
-        @dataclass(slots=True, kw_only=True)
+        @dataclass
         class Scope:
             service_scope: List["OndemandType.Availability.Scope.ServiceScope"] = field(
                 default_factory=list,
@@ -1089,7 +1119,8 @@ class OndemandType:
                     "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
                 }
             )
-            start_time: str = field(
+            start_time: Optional[str] = field(
+                default=None,
                 metadata={
                     "name": "startTime",
                     "type": "Attribute",
@@ -1097,7 +1128,8 @@ class OndemandType:
                     "pattern": r"[^\-].+T[^\.]+",
                 }
             )
-            stop_time: str = field(
+            stop_time: Optional[str] = field(
+                default=None,
                 metadata={
                     "name": "stopTime",
                     "type": "Attribute",
@@ -1106,9 +1138,10 @@ class OndemandType:
                 }
             )
 
-            @dataclass(slots=True, kw_only=True)
+            @dataclass
             class ServiceScope:
-                id: str = field(
+                id: Optional[str] = field(
+                    default=None,
                     metadata={
                         "type": "Attribute",
                         "required": True,
@@ -1118,7 +1151,7 @@ class OndemandType:
                 )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ServiceGroupType:
     class Meta:
         name = "serviceGroupType"
@@ -1165,9 +1198,10 @@ class ServiceGroupType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class ServiceGroupId:
-        radioplayer_id: int = field(
+        radioplayer_id: Optional[int] = field(
+            default=None,
             metadata={
                 "name": "radioplayerId",
                 "type": "Attribute",
@@ -1188,7 +1222,7 @@ class ServiceGroupType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProgrammeType:
     class Meta:
         name = "programmeType"
@@ -1294,7 +1328,8 @@ class ProgrammeType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgDataTypes",
         }
     )
-    short_id: int = field(
+    short_id: Optional[int] = field(
+        default=None,
         metadata={
             "name": "shortId",
             "type": "Attribute",
@@ -1343,7 +1378,7 @@ class ProgrammeType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class ProgrammeEvent:
         short_name: List[ShortNameType] = field(
             default_factory=list,
@@ -1459,7 +1494,8 @@ class ProgrammeType:
                 "namespace": "http://www.radioplayer.co.uk/schemas/11/epgDataTypes",
             }
         )
-        short_id: int = field(
+        short_id: Optional[int] = field(
+            default=None,
             metadata={
                 "name": "shortId",
                 "type": "Attribute",
@@ -1503,7 +1539,7 @@ class ProgrammeType:
         )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ServiceType:
     class Meta:
         name = "serviceType"
@@ -1596,7 +1632,8 @@ class ServiceType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSI",
         }
     )
-    radioplayer_id: RadioplayerIdType = field(
+    radioplayer_id: Optional[RadioplayerIdType] = field(
+        default=None,
         metadata={
             "name": "radioplayerId",
             "type": "Element",
@@ -1604,7 +1641,8 @@ class ServiceType:
             "required": True,
         }
     )
-    listenlive_group: ListenliveGroupType = field(
+    listenlive_group: Optional[ListenliveGroupType] = field(
+        default=None,
         metadata={
             "name": "listenliveGroup",
             "type": "Element",
@@ -1612,7 +1650,8 @@ class ServiceType:
             "required": True,
         }
     )
-    geo_locations: str = field(
+    geo_locations: Optional[str] = field(
+        default=None,
         metadata={
             "name": "geoLocations",
             "type": "Element",
@@ -1620,7 +1659,8 @@ class ServiceType:
             "required": True,
         }
     )
-    geo_footprint: str = field(
+    geo_footprint: Optional[str] = field(
+        default=None,
         metadata={
             "name": "geoFootprint",
             "type": "Element",
@@ -1665,7 +1705,7 @@ class ServiceType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProgrammeGroupsType:
     class Meta:
         name = "programmeGroupsType"
@@ -1703,7 +1743,7 @@ class ProgrammeGroupsType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class EnsembleType:
     class Meta:
         name = "ensembleType"
@@ -1779,7 +1819,8 @@ class EnsembleType:
             "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSI",
         }
     )
-    id: str = field(
+    id: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "required": True,
@@ -1795,7 +1836,7 @@ class EnsembleType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ScheduleType:
     class Meta:
         name = "scheduleType"
@@ -1838,7 +1879,7 @@ class ScheduleType:
         }
     )
 
-    @dataclass(slots=True, kw_only=True)
+    @dataclass
     class Scope:
         service_scope: List["ScheduleType.Scope.ServiceScope"] = field(
             default_factory=list,
@@ -1848,7 +1889,8 @@ class ScheduleType:
                 "namespace": "http://www.radioplayer.co.uk/schemas/11/epgSchedule",
             }
         )
-        start_time: str = field(
+        start_time: Optional[str] = field(
+            default=None,
             metadata={
                 "name": "startTime",
                 "type": "Attribute",
@@ -1856,7 +1898,8 @@ class ScheduleType:
                 "pattern": r"[^\-].+T[^\.]+",
             }
         )
-        stop_time: str = field(
+        stop_time: Optional[str] = field(
+            default=None,
             metadata={
                 "name": "stopTime",
                 "type": "Attribute",
@@ -1865,7 +1908,7 @@ class ScheduleType:
             }
         )
 
-        @dataclass(slots=True, kw_only=True)
+        @dataclass
         class ServiceScope:
             id: Optional[str] = field(
                 default=None,
@@ -1875,7 +1918,8 @@ class ScheduleType:
                     "pattern": r"(([0-9a-fA-F]{2}\.[0-9a-fA-F]{4}\.)?[0-9a-fA-F]{4,8}\.[0-9a-fA-F]{1}(\.[0-9a-fA-F]{2})?)|([0-9a-fA-F]{6})",
                 }
             )
-            radioplayer_id: int = field(
+            radioplayer_id: Optional[int] = field(
+                default=None,
                 metadata={
                     "name": "radioplayerId",
                     "type": "Attribute",
@@ -1884,7 +1928,7 @@ class ScheduleType:
             )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ServiceInformation:
     """
     Service information includes the structure of and information about the
@@ -1943,7 +1987,8 @@ class ServiceInformation:
             "type": "Attribute",
         }
     )
-    lang: Union[str, LangValue] = field(
+    lang: Optional[Union[str, LangValue]] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/XML/1998/namespace",
@@ -1952,7 +1997,7 @@ class ServiceInformation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Epg:
     class Meta:
         name = "epg"
@@ -1978,7 +2023,8 @@ class Epg:
             "type": "Element",
         }
     )
-    lang: Union[str, LangValue] = field(
+    lang: Optional[Union[str, LangValue]] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/XML/1998/namespace",

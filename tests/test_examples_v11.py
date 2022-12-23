@@ -1,6 +1,6 @@
 import pytest
-from lxml.etree import parse, tostring
-from xmldiff import main as xmldiff
+from lxml.etree import parse, tostring  # type: ignore
+from xmldiff import main as xmldiff  # type: ignore
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
@@ -292,7 +292,7 @@ def test_example_pi(xml_serializer):
 @pytest.mark.parametrize("schema_location", [f"{_XMLNS_SI} {_XSD_SI}"])
 def test_example_si(xml_serializer):
     """Test generating an SI XML."""
-    si = ServiceInformation(
+    service_information = ServiceInformation(
         lang="en",
         ensemble=EnsembleType(
             id="00.0000",
@@ -418,7 +418,7 @@ def test_example_si(xml_serializer):
                     )
                 ),
                 geo_locations="York",
-                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",
+                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # pylint: disable=line-too-long
                 social_id=[
                     SocialIdentifierType(type="googleplus", uid="123645"),
                     SocialIdentifierType(type="twitter", uid="123645"),
@@ -430,7 +430,7 @@ def test_example_si(xml_serializer):
 
     expected_string = tostring(parse(f"tests/data/{_FILE_SI_XML}"))
     actual_string = xml_serializer.render(
-        si,
+        service_information,
         ns_map={None: _XMLNS_SI, "epg": _XMLNS_EPG_DATA, "radioplayer": _XMLNS_RP_DATA},
     )
     print(actual_string)

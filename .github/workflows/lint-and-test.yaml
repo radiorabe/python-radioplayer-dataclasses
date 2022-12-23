@@ -8,57 +8,47 @@ on:
       - gh-pages
 
 jobs:
-
+  call-workflow:
+    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@main
   xsdata-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          cache: 'poetry'
 
-      - run: pip install -r requirements-dev.txt
+      - run: poetry install
 
       - name: Run xsdata
-        run: xsdata -c .xsdata.xml schemas/
+        run: poetry run xsdata -c .xsdata.xml schemas/
 
       - name: Check Diff
         run: git diff --exit-code
-
-  pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - run: pip install -r requirements-dev.txt
-
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.0
-
   pytest:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [ '3.x', '3.10' ]
+        python-version: [ '3.x', '3.9' ]
     name: Test python ${{ matrix.python-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - run: pipx install poetry
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
 
-      - run: pip install -r requirements-dev.txt
+      - run: poetry install
 
-      - run: python -mpytest --cov-fail-under=100
+      - run: poetry run pytest
