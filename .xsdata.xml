@@ -4,7 +4,7 @@
     <Package>radioplayer.dataclasses.dataclasses</Package>
     <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="false" kwOnly="false">dataclasses</Format>
     <Structure>single-package</Structure>
-    <DocstringStyle>reStructuredText</DocstringStyle>
+    <DocstringStyle>Google</DocstringStyle>
     <RelativeImports>false</RelativeImports>
     <CompoundFields>false</CompoundFields>
   </Output>

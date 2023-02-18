@@ -10,6 +10,8 @@ on:
 jobs:
   pre-commit:
     uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.6.1
+  pytest:
+    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.6.1
   xsdata-update:
     runs-on: ubuntu-latest
     steps:
@@ -31,5 +33,3 @@ jobs:
 
       - name: Check Diff
         run: git diff --exit-code
-  pytest:
-    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.6.1

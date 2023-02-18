@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "radioplayer-dataclasses"
 version = "0.0.0" # 0.0.0 placeholder is replaced on release
-description = "Generate CRIDs for RaBe"
+description = "Python dataclasses for radioplayer generated from XSD"
 repository = "https://github.com/radiorabe/python-radioplayer-dataclasses"
 authors = ["RaBe IT-Reaktion <it@rabe.ch>"]
 license = "AGPL-3"
@@ -37,6 +37,12 @@ xmldiff = "^2.4"
 xsdata = {extras = ["cli"], version = "^22.12"}
 pytest-random-order = "^1.1.0"
 pytest-mypy = "^0.10.3"
+mkdocstrings = "^0.20.0"
+mkdocs-material = "^9.0.13"
+mkdocs = "^1.4.2"
+mkdocs-gen-files = "^0.4.0"
+mkdocs-literate-nav = "^0.6.0"
+mkdocs-section-index = "^0.3.5"
 
 [tool.isort]
 line_length = 120
@@ -56,7 +62,7 @@ disable = ["C0114","C0116"]
 
 [tool.pytest.ini_options]
 minversion = "7.2"
-addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=radioplayer.dataclasses --cov-fail-under=100 --pylint --mypy"
+addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=radioplayer.dataclasses --cov-fail-under=100 --pylint --mypy --ignore=docs/"
 filterwarnings = [
     "ignore::pytest.PytestRemovedIn8Warning:pytest_pylint",
     "ignore::DeprecationWarning:pylint"
