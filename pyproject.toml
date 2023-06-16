@@ -67,6 +67,7 @@ filterwarnings = [
     "ignore::pytest.PytestRemovedIn8Warning:pytest_pylint",
     "ignore::DeprecationWarning:pytest_pylint",
     "ignore::DeprecationWarning:pylint",
+    "ignore::DeprecationWarning:pkg_resources",
 ]
 
 [build-system]
