@@ -132,7 +132,14 @@ def test_example_od(xml_serializer):
     )
 
     expected_string = tostring(parse(f"tests/data/{_FILE_OD_XML}"))
-    actual_string = xml_serializer.render(epg)
+    actual_string = xml_serializer.render(
+        epg,
+        ns_map={
+            None: _XMLNS_EPG_SCHEDULE,
+            "epg": _XMLNS_EPG_DATA,
+            "radioplayer": _XMLNS_RP_DATA,
+        },
+    )
     assert not xmldiff.diff_texts(left=actual_string, right=expected_string)
 
 
@@ -208,7 +215,14 @@ def test_example_pe(xml_serializer):
     )
 
     expected_string = tostring(parse(f"tests/data/{_FILE_PE_XML}"))
-    actual_string = xml_serializer.render(epg)
+    actual_string = xml_serializer.render(
+        epg,
+        ns_map={
+            None: _XMLNS_EPG_SCHEDULE,
+            "epg": _XMLNS_EPG_DATA,
+            "radioplayer": _XMLNS_RP_DATA,
+        },
+    )
     assert not xmldiff.diff_texts(left=actual_string, right=expected_string)
 
 
@@ -285,7 +299,14 @@ def test_example_pi(xml_serializer):
     )
 
     expected_string = tostring(parse(f"tests/data/{_FILE_PI_XML}"))
-    actual_string = xml_serializer.render(epg)
+    actual_string = xml_serializer.render(
+        epg,
+        ns_map={
+            None: _XMLNS_EPG_SCHEDULE,
+            "epg": _XMLNS_EPG_DATA,
+            "radioplayer": _XMLNS_RP_DATA,
+        },
+    )
     assert not xmldiff.diff_texts(left=actual_string, right=expected_string)
 
 
@@ -433,5 +454,4 @@ def test_example_si(xml_serializer):
         service_information,
         ns_map={None: _XMLNS_SI, "epg": _XMLNS_EPG_DATA, "radioplayer": _XMLNS_RP_DATA},
     )
-    print(actual_string)
     assert not xmldiff.diff_texts(left=actual_string, right=expected_string)

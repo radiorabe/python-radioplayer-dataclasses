@@ -18,7 +18,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 xsdata = ">=22.12,<24.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -65,7 +65,9 @@ minversion = "7.2"
 addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=radioplayer.dataclasses --cov-fail-under=100 --pylint --mypy --ignore=docs/"
 filterwarnings = [
     "ignore::pytest.PytestRemovedIn8Warning:pytest_pylint",
-    "ignore::DeprecationWarning:pylint"
+    "ignore::DeprecationWarning:pytest_pylint",
+    "ignore::DeprecationWarning:pylint",
+    "ignore::DeprecationWarning:pkg_resources",
 ]
 
 [build-system]
