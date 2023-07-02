@@ -92,7 +92,7 @@ def test_example_od(xml_serializer):
                     )
                 ),
                 genre=GenreType(
-                    type="main",
+                    type_value="main",
                     href="urn:radioplayer:metadata:cs:Category:2012:1",
                     name="Pop/Chart",
                 ),
@@ -184,7 +184,7 @@ def test_example_pe(xml_serializer):
                     )
                 ),
                 genre=GenreType(
-                    type="main",
+                    type_value="main",
                     href="urn:radioplayer:metadata:cs:Category:2012:1",
                     name="Pop/Chart",
                 ),
@@ -204,7 +204,7 @@ def test_example_pe(xml_serializer):
                         )
                     ),
                     genre=GenreType(
-                        href="urn:tva:metadata:cs:ContentCS:2002:3.6.1", type=None
+                        href="urn:tva:metadata:cs:ContentCS:2002:3.6.1", type_value=None
                     ),
                     media_credit=MediaCreditType(
                         role="artist", scheme="urn:ebu", value="The Magnetic Fields"
@@ -257,7 +257,7 @@ def test_example_pi(xml_serializer):
                     bearer=LocationType.Bearer(id="e1.0000.0000.0", radioplayer_id="1"),
                 ),
                 genre=GenreType(
-                    type="main",
+                    type_value="main",
                     href="urn:radioplayer:metadata:cs:Category:2012:1",
                     name="Pop/Chart",
                 ),
@@ -291,8 +291,8 @@ def test_example_pi(xml_serializer):
                     ),
                 ),
                 social_id=[
-                    SocialIdentifierType(type="facebook", uid="12345678"),
-                    SocialIdentifierType(type="twitter", uid="12345678"),
+                    SocialIdentifierType(type_value="facebook", uid="12345678"),
+                    SocialIdentifierType(type_value="twitter", uid="12345678"),
                 ],
             ),
         ),
@@ -320,7 +320,7 @@ def test_example_si(xml_serializer):
             short_name=ShortNameType(lang=None),
             medium_name=MediumNameType(lang=None),
             service=ServiceType(
-                service_id=ServiceIdType(id="e1.0000.0000.0", type=None),
+                service_id=ServiceIdType(id="e1.0000.0000.0", type_value=None),
                 short_name="Short",
                 medium_name="Medium Name",
                 long_name="Long Name",
@@ -371,7 +371,7 @@ def test_example_si(xml_serializer):
                     ),
                 ],
                 genre=GenreType(
-                    type="main",
+                    type_value="main",
                     href="urn:tva:metadata:cs:ContentCS:2002:3.7.1",
                     name="Content games categories",
                 ),
@@ -380,7 +380,7 @@ def test_example_si(xml_serializer):
                     lang=None,
                     url="http://mysite/mobile",
                     mime_value="text/html",
-                    type="rp-handheld-station-view",
+                    type_value="rp-handheld-station-view",
                     index="0",
                 ),
                 radioplayer_id=RadioplayerIdType(id="1"),
@@ -441,9 +441,9 @@ def test_example_si(xml_serializer):
                 geo_locations="York",
                 geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # pylint: disable=line-too-long
                 social_id=[
-                    SocialIdentifierType(type="googleplus", uid="123645"),
-                    SocialIdentifierType(type="twitter", uid="123645"),
-                    SocialIdentifierType(type="facebook", uid="mystation"),
+                    SocialIdentifierType(type_value="googleplus", uid="123645"),
+                    SocialIdentifierType(type_value="twitter", uid="123645"),
+                    SocialIdentifierType(type_value="facebook", uid="mystation"),
                 ],
             ),
         ),
