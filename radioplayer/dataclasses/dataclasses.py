@@ -338,9 +338,10 @@ class SocialIdentifierType:
         name = "socialIdentifierType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
 
-    type: Optional[str] = field(
+    type_value: Optional[str] = field(
         default=None,
         metadata={
+            "name": "type",
             "type": "Attribute",
             "required": True,
         }
@@ -364,9 +365,10 @@ class Catype:
         name = "CAType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgDataTypes"
 
-    type: CatypeType = field(
+    type_value: CatypeType = field(
         default=CatypeType.NONE,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -433,9 +435,10 @@ class LinkType:
             "pattern": r"[^\-].+T[^\.]+",
         }
     )
-    type: Optional[str] = field(
+    type_value: Optional[str] = field(
         default=None,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -497,9 +500,10 @@ class FrequencyType:
         name = "frequencyType"
         target_namespace = "http://www.radioplayer.co.uk/schemas/11/epgSI"
 
-    type: FrequencyTypeType = field(
+    type_value: FrequencyTypeType = field(
         default=FrequencyTypeType.PRIMARY,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -527,9 +531,10 @@ class ServiceIdType:
             "pattern": r"(([0-9a-fA-F]{2}\.[0-9a-fA-F]{4}\.)?[0-9a-fA-F]{4,8}\.[0-9a-fA-F]{1}(\.[0-9a-fA-F]{2})?)|([0-9a-fA-F]{6})",
         }
     )
-    type: ServiceIdTypeAttr = field(
+    type_value: ServiceIdTypeAttr = field(
         default=ServiceIdTypeAttr.PRIMARY,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -547,9 +552,10 @@ class AlternateSourceType:
             "type": "Attribute",
         }
     )
-    type: AlternateSourceTypeType = field(
+    type_value: AlternateSourceTypeType = field(
         default=AlternateSourceTypeType.IDENTICAL,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -614,9 +620,10 @@ class GenreType:
             "pattern": r":[^:]+:[^:]+",
         }
     )
-    type: GenreTypeType = field(
+    type_value: GenreTypeType = field(
         default=GenreTypeType.MAIN,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
@@ -825,9 +832,10 @@ class MediaDescriptionType:
                 "pattern": r"((crid|CRID|tel|mailto|postal|http|https|dab|drm):(//|\+|SMS=)?)?([a-zA-Z0-9]|\.|@|%|\-|/|_|\+|\?|=|;){1,}",
             }
         )
-        type: Optional[MultimediaType] = field(
+        type_value: Optional[MultimediaType] = field(
             default=None,
             metadata={
+                "name": "type",
                 "type": "Attribute",
             }
         )
@@ -960,9 +968,10 @@ class ProgrammeGroupType:
             "type": "Attribute",
         }
     )
-    type: Optional[ProgrammeGroupTypeType] = field(
+    type_value: Optional[ProgrammeGroupTypeType] = field(
         default=None,
         metadata={
+            "name": "type",
             "type": "Attribute",
         }
     )
