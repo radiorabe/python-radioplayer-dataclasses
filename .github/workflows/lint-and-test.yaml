@@ -9,9 +9,9 @@ on:
 
 jobs:
   pre-commit:
-    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.17.2
+    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.18.0
   pytest:
-    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.17.2
+    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.18.0
   xsdata-update:
     runs-on: ubuntu-latest
     steps:
