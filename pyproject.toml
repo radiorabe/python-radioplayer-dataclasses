@@ -23,7 +23,7 @@ xsdata = ">=22.12,<24.0"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=22.12,<24.0"
-flake8 = "^6.0.0"
+flake8 = ">=6,<8"
 flake8-docstrings = "^1.6.0"
 flake8-isort = ">=5.0.3,<7.0.0"
 flake8-string-format = "^0.3.0"
