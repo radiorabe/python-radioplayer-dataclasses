@@ -263,6 +263,38 @@ class BitRateType:
 
 
 @dataclass
+class GeoFootprintType:
+    class Meta:
+        name = "geoFootprintType"
+        target_namespace = (
+            "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
+        )
+
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
+
+
+@dataclass
+class GeoLocationsType:
+    class Meta:
+        name = "geoLocationsType"
+        target_namespace = (
+            "http://www.radioplayer.co.uk/schemas/11/rpDataTypes"
+        )
+
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
+
+
+@dataclass
 class MediaCreditType:
     class Meta:
         name = "mediaCreditType"
@@ -1059,14 +1091,14 @@ class ListenliveGroupType:
                 "required": True,
             },
         )
-        restriction: Optional[
-            "ListenliveGroupType.Listenlive.Restriction"
-        ] = field(
-            default=None,
-            metadata={
-                "type": "Element",
-                "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
-            },
+        restriction: Optional["ListenliveGroupType.Listenlive.Restriction"] = (
+            field(
+                default=None,
+                metadata={
+                    "type": "Element",
+                    "namespace": "http://www.radioplayer.co.uk/schemas/11/rpDataTypes",
+                },
+            )
         )
         audio_stream_group: Optional[AudioStreamGroupType] = field(
             default=None,
@@ -1719,7 +1751,7 @@ class ServiceType:
             "required": True,
         },
     )
-    geo_locations: Optional[str] = field(
+    geo_locations: Optional[GeoLocationsType] = field(
         default=None,
         metadata={
             "name": "geoLocations",
@@ -1728,7 +1760,7 @@ class ServiceType:
             "required": True,
         },
     )
-    geo_footprint: Optional[str] = field(
+    geo_footprint: Optional[GeoFootprintType] = field(
         default=None,
         metadata={
             "name": "geoFootprint",
