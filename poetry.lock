@@ -1702,13 +1702,13 @@ devenv = ["black", "coverage", "flake8", "zest.releaser[recommended]"]
 
 [[package]]
 name = "xsdata"
-version = "24.3"
+version = "24.3.1"
 description = "Python XML Binding"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "xsdata-24.3-py3-none-any.whl", hash = "sha256:560dbe4733598186f1f80328f7c8b4756cbc917e491e3962bd6160017a48e062"},
-    {file = "xsdata-24.3.tar.gz", hash = "sha256:6f111d9f206988e01d28669b111264b6dfc8b03f6528a751412e8313702faa57"},
+    {file = "xsdata-24.3.1-py3-none-any.whl", hash = "sha256:2f4a00ec33fb6ff41fca95f3fac826b83fc34d8644e2f3da830ad393defb5705"},
+    {file = "xsdata-24.3.1.tar.gz", hash = "sha256:cf6c6895616260cbe2a4eff6f8f906cd16f9c1dba8fd8561e500b91269b86616"},
 ]
 
 [package.dependencies]
