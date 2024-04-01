@@ -30,6 +30,7 @@ for path in sorted(Path("radioplayer/dataclasses").rglob("*.py")):
 
     mkdocs_gen_files.set_edit_path(full_doc_path, path)
 
-readme = Path("README.md").open("r")
-with mkdocs_gen_files.open("index.md", "w", encoding="utf-8") as index_file:
+with Path("README.md").open("r") as readme, mkdocs_gen_files.open(
+    "index.md", "w", encoding="utf-8"
+) as index_file:
     index_file.writelines(readme.read())

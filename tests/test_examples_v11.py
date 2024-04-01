@@ -1,6 +1,6 @@
 import pytest
-from lxml.etree import parse, tostring  # type: ignore
-from xmldiff import main as xmldiff  # type: ignore
+from lxml.etree import parse, tostring
+from xmldiff import main as xmldiff  # type: ignore[import]
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
@@ -54,7 +54,7 @@ def fixture_xml_serializer(schema_location):
     config = SerializerConfig(
         pretty_print=True, xml_declaration=False, schema_location=schema_location
     )
-    yield XmlSerializer(config=config)
+    return XmlSerializer(config=config)
 
 
 def test_example_od(xml_serializer):
@@ -439,7 +439,7 @@ def test_example_si(xml_serializer):
                     )
                 ),
                 geo_locations="York",
-                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # pylint: disable=line-too-long
+                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # pylint: disable=line-too-long  # noqa: E501
                 social_id=[
                     SocialIdentifierType(type_value="googleplus", uid="123645"),
                     SocialIdentifierType(type_value="twitter", uid="123645"),

@@ -3,4 +3,4 @@
 
 schemas/*.xsd linguist-vendored
 radioplayer/__init__.py linguist-generated
-radioplayer/dataclasses.py linguist-generated
+radioplayer/dataclasses/*.py linguist-generated

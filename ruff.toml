@@ -2,6 +2,8 @@
 #
 # templated with https://github.com/radiorabe/backstage-software-templates
 
+extend = "./pyproject.toml"
+
 [lint]
 select = [
 	"F",       # pyflakes
@@ -67,6 +69,7 @@ ignore = [
 	"S105",    # tests may have hardcoded secrets
 	"S106",    # tests may have hardcoded passwords
 	"S108",    # /tmp is allowed in tests since it's expected to be mocked
+	"S320",    # tests get to use insecure lxml
 	"DTZ00",   # tests often run in UTC
 	"INP001",  # tests do not need a dunder init
 ]

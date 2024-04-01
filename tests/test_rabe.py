@@ -1,5 +1,5 @@
 import pytest
-from xmldiff import main as xmldiff  # type: ignore
+from xmldiff import main as xmldiff  # type: ignore[import]
 from xsdata.formats.dataclass.serializers import XmlSerializer
 from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
@@ -16,7 +16,7 @@ def fixture_xml_serializer():
         xml_declaration=False,
         schema_location=f"{_XMLNS_EPG_SCHEDULE} {_XSD_EPG_SCHEDULE}",
     )
-    yield XmlSerializer(config=config)
+    return XmlSerializer(config=config)
 
 
 def test_ampersand_in_show(xml_serializer):

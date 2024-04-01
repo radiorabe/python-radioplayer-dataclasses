@@ -1,26 +1,12 @@
 repos:
-  - repo: local
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.3.2'
     hooks:
-      - id: black
-        name: black
-        language: system
-        entry: black
-        types: [python]
-        exclude: ^radioplayer/dataclasses/
-      - id: isort
-        name: isort
-        language: system
-        entry: isort
-        types: [python]
-        exclude: ^radioplayer/dataclasses/
-      - id: flake8
-        name: flake8
-        language: system
-        entry: flake8
-        types: [python]
-        exclude: ^radioplayer/dataclasses/
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
         exclude: ^schemas/.*.xsd$
