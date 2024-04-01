@@ -48,9 +48,9 @@ extend-exclude = [
 minversion = "7.2"
 addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=radioplayer.dataclasses --cov-fail-under=100 --ruff --mypy --ignore=docs/"
 filterwarnings = [
-    "ignore::DeprecationWarning:pytest_pylint",
-    "ignore::DeprecationWarning:pylint",
+    "ignore::DeprecationWarning:mypy",
     "ignore::DeprecationWarning:pkg_resources",
+    "ignore::DeprecationWarning:xsdata",
 ]
 
 [build-system]
