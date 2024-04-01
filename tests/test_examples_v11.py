@@ -439,7 +439,7 @@ def test_example_si(xml_serializer):
                     )
                 ),
                 geo_locations="York",
-                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # pylint: disable=line-too-long  # noqa: E501
+                geo_footprint="53.95059 -1.060181, 53.951399 -1.044302, 53.947509 -1.04147, 53.941498 -1.057863, 53.943923 -1.060095, 53.95059 -1.060181",  # noqa: E501
                 social_id=[
                     SocialIdentifierType(type_value="googleplus", uid="123645"),
                     SocialIdentifierType(type_value="twitter", uid="123645"),
