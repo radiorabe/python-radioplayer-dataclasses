@@ -7,5 +7,7 @@ dist/
 .pytest_cache/
 .coverage
 venv/
+.venv/
 docs/index.md
 docs/reference/
+pytestdebug.log
