@@ -1424,13 +1424,13 @@ test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 
 [[package]]
 name = "xmldiff"
-version = "2.6.3"
+version = "2.7.0"
 description = "Creates diffs of XML files"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "xmldiff-2.6.3-py3-none-any.whl", hash = "sha256:5e18e7c2f69e92da05454fea7132b0c69943c973cf8b6f304cd0f7ddac291e67"},
-    {file = "xmldiff-2.6.3.tar.gz", hash = "sha256:19b030b3fa37d1f0b5c5ad9ada9059884c3bf2c751c5dd8f1eb4ed49cfe3fc60"},
+    {file = "xmldiff-2.7.0-py3-none-any.whl", hash = "sha256:c8020e6aa4aa9fa13c72e5bf0eeafd0be998b0ab55d78b008abc75fbfebaca27"},
+    {file = "xmldiff-2.7.0.tar.gz", hash = "sha256:c0910b1f800366dd7ec62923e5d06e8b06a1bd9120569a1c27f4f2446b9c68a2"},
 ]
 
 [package.dependencies]
